@@ -15,11 +15,12 @@ const Recorder = () => {
   }
   function handleStop(){
     stop();
-    pressStart(false);
+    updatePressStart(false);
   }
 
   React.useEffect(()=>{
     if(pressStart){
+      console.log(pressStart);
       start();
      const timer = setTimeout(()=>{
        stop();
