@@ -1,9 +1,7 @@
 import React from "react";
-
 import AudioReactRecorder, { RecordState } from "audio-react-recorder";
-
+// const MicRecorder = require('mic-recorder-to-mp3');
 const Recorder = () => {
-  
   const [recordState, updateRecordState] = React.useState(null);
   const [toggle, updateToggle] = React.useState(false);
   const [pressStart, updatePressStart] = React.useState(false);
@@ -20,7 +18,6 @@ const Recorder = () => {
 
   React.useEffect(()=>{
     if(pressStart){
-      console.log(pressStart);
       start();
      const timer = setTimeout(()=>{
        stop();
@@ -37,11 +34,11 @@ const Recorder = () => {
     updateRecordState(RecordState.STOP);
   }
   
-  function onStop(audioData) {
+  async function onStop(audioData) {
     const link = document.createElement('a');
     link.href = audioData.url;
     link.download = "recorded_auido.wav";
-    link.click();
+    console.log(Object.getPrototypeOf(new Blob([Object.getPrototypeOf(audioData.blob)], {type: "audio/wav"})));
     console.log("audioData", audioData);
   }
 
