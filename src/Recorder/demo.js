@@ -24,7 +24,7 @@ function Demo(props) {
   const [recorder] = React.useState(new MicRecorder({
     bitRate: 128,
   }));
-  console.log(newBlob);
+  //console.log(newBlob);
   function start() {
     recorder
       .start()
@@ -53,11 +53,6 @@ function Demo(props) {
         });
         var data = new FormData();
         data.append("file", newBlob, "file");
-        const url = URL.createObjectURL(file);
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = "file.mp3";
-        link.click();
         console.log(blob);
         updateNewBlob(blob);
         props.updateIsActive(true);
