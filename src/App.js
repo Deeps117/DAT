@@ -3,6 +3,7 @@ import Demo from "./Recorder/demo";
 import Display from "./display";
 
 function App() {
+  const [isActive, updateIsActive] = React.useState(false);
   return (
     <div>
       <div className="header-wrapper">
@@ -10,8 +11,12 @@ function App() {
         <i className="fas fa-gear"></i>
       </div>
       <div className="recorder-wrapper">
-        <Display />
-        <Demo />
+        <Display 
+        isActive = {isActive}
+        />
+        <Demo 
+        updateIsActive = {updateIsActive}
+        />
       </div>
     </div>
   );
