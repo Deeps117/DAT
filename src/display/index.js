@@ -2,7 +2,7 @@ import React from "react";
 
 function Display() {
   return (
-    <div>
+    <div className="display-wrapper">
       <div className="top-icon-wrapper">
         <i className="fas fa-arrow-up"></i>
       </div>

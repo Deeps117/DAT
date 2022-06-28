@@ -1,46 +1,78 @@
-body{
+body {
   background-color: black;
 }
-h1, h2, h3, h4, h5, h6, p{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   font-family: 'Josefin Sans', sans-serif;
 }
-h1{
+
+h1 {
   color: white;
 }
-.header-wrapper{
+
+.header-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
-i{
+
+i {
   color: white;
+  font-size: 40px;
 }
-.circle
-    {
-    cursor: pointer;
-    width: 200px;
-    height:200px;
-    border-radius:100px;
-    font-size:20px;
-    color:black;
-    line-height: 150px;
-    text-align:center;
-    background:white
-    }
-.circle-wrapper{
+
+.circle1 {
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  font-size: 20px;
+  color: white;
+  line-height: 150px;
+  text-align: center;
+  background: inherit;
+  border: 1px solid white;
+  /* box-shadow: 0px 0px 20px 5px rgba(0, 255, 255, 0.7); */
+}
+
+.circle2 {
+  cursor: pointer;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  font-size: 20px;
+  color: white;
+  line-height: 150px;
+  text-align: center;
+  background: inherit;
+  border: 1px solid white;
+  /* box-shadow: inset 0px 0px 40px 5px rgba(0, 255, 255, 0.7); */
+}
+
+.circle-wrapper {
   display: flex;
   justify-content: center;
 }
-.top-icon-wrapper{
+
+.top-icon-wrapper {
   margin-top: 50px;
   display: flex;
   justify-content: center;
 }
-.middle-icons-wrapper{
+
+.middle-icons-wrapper {
   margin: 50px 0px;
   display: flex;
   justify-content: space-around;
 }
-.bottom-icon-wrapper{
+
+.bottom-icon-wrapper {
   display: flex;
   justify-content: center;
   margin-bottom: 50px;

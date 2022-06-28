@@ -4,6 +4,23 @@ const MicRecorder = require("mic-recorder-to-mp3");
 
 function Demo() {
   const [newBlob, updateNewBlob] = React.useState(null);
+  const startButton = {
+    inner:{
+      "box-shadow": "inset 0px 0px 40px 5px rgba(0, 255, 255, 0.7)",
+    },
+    outer:{
+      "box-shadow": "0px 0px 20px 5px rgba(0, 255, 255, 0.7)",
+    },
+  };
+  const stopButton = {
+    inner:{
+      "box-shadow": "inset 0px 0px 40px 5px #c7ad70",
+    },
+    outer:{
+      "box-shadow": "0px 0px 20px 5px #c7ad70",
+    },
+  }
+
   const [recorder] = React.useState(new MicRecorder({
     bitRate: 128,
   }));
@@ -39,7 +56,7 @@ function Demo() {
         const link = document.createElement("a");
         link.href = url;
         link.download = "file.mp3";
-        link.click();
+        //link.click();
         console.log(blob);
         updateNewBlob(blob);
         console.log(data);
@@ -67,8 +84,10 @@ function Demo() {
   }
   return (
     <div className="circle-wrapper">
-      <div className="circle" onClick={handleClick}>
+      <div className="circle1" onClick={handleClick} style={newBlob!==-1 ? startButton.outer : stopButton.outer}>
+        <div className="circle2" style={newBlob!==-1 ? startButton.inner : stopButton.inner}>
         <h2>{newBlob!==-1 ? "Start" : "Stop"}</h2>
+        </div>
       </div>
     </div>
   );
