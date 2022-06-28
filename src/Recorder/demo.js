@@ -1,30 +1,47 @@
+import { update } from "@tensorflow/tfjs-layers/dist/variables";
 import React from "react";
 const MicRecorder = require("mic-recorder-to-mp3");
 
 function Demo() {
-  const recorder = new MicRecorder({
+  const [newBlob, updateNewBlob] = React.useState(null);
+  const [recorder] = React.useState(new MicRecorder({
     bitRate: 128,
-  });
+  }));
+  console.log(newBlob);
   function start() {
     recorder
       .start()
-      .then(() => {})
+      .then(() => {
+        // toggler();
+        updateNewBlob(-1);
+        console.log('a');
+      })
       .catch((e) => {
         console.error(e);
       });
   }
   function stop() {
+    //console.log("a");
     recorder
       .stop()
       .getMp3()
       .then(([buffer, blob]) => {
+        // toggler();
+        console.log("aa");
+        const newBlob = new Blob([blob], { type: "audio/mp3; codecs=0" });
         const file = new File(buffer, "music.mp3", {
-          type: blob.type,
+          type: newBlob.type,
           lastModified: Date.now(),
         });
         var data = new FormData();
-        data.append("file", blob, "file");
+        data.append("file", newBlob, "file");
+        const url = URL.createObjectURL(file);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "file.mp3";
+        link.click();
         console.log(blob);
+        updateNewBlob(blob);
         console.log(data);
         fetch("http://127.0.0.1:5000/receive", {
           method: "POST",
@@ -40,10 +57,19 @@ function Demo() {
         console.log(e);
       });
   }
+  function handleClick() {
+    //console.log(startButton);
+    if (newBlob !== -1) {
+      start();
+    } else {
+      stop();
+    }
+  }
   return (
-    <div>
-      <button onClick={start}>Start</button>
-      <button onClick={stop}>Stop</button>
+    <div className="circle-wrapper">
+      <div className="circle" onClick={handleClick}>
+        <h2>{newBlob!==-1 ? "Start" : "Stop"}</h2>
+      </div>
     </div>
   );
 }
