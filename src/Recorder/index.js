@@ -1,9 +1,32 @@
-import React, { Component } from "react";
+import React from "react";
 
 import AudioReactRecorder, { RecordState } from "audio-react-recorder";
 
 const Recorder = () => {
+  
   const [recordState, updateRecordState] = React.useState(null);
+  const [toggle, updateToggle] = React.useState(false);
+  const [pressStart, updatePressStart] = React.useState(false);
+
+  function handleStart(){
+    start();
+    updatePressStart(true);
+    updateToggle(!toggle);
+  }
+  function handleStop(){
+    stop();
+    pressStart(false);
+  }
+
+  React.useEffect(()=>{
+    if(pressStart){
+      start();
+     const timer = setTimeout(()=>{
+       stop();
+       updateToggle(!toggle);
+     }, 3000);
+    }
+  }, [toggle])
 
   function start() {
     updateRecordState(RecordState.START);
@@ -12,7 +35,7 @@ const Recorder = () => {
   function stop() {
     updateRecordState(RecordState.STOP);
   }
-
+  
   function onStop(audioData) {
     const link = document.createElement('a');
     link.href = audioData.url;
@@ -25,9 +48,8 @@ const Recorder = () => {
     <div>
       <div>
         <AudioReactRecorder state={recordState} onStop={onStop} />
-
-        <button onClick={start}>Start</button>
-        <button onClick={stop}>Stop</button>
+        <button onClick={handleStart} >Start</button>
+        <button onClick={handleStop}>Stop</button>
       </div>
     </div>
   );
