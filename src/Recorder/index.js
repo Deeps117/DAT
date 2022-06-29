@@ -45,7 +45,7 @@ const Recorder = (props) => {
     const link = document.createElement("a");
     link.href = audioData.url;
     link.download = "recorded_auido.wav";
-    link.click();
+    //link.click();
     const blob = audioData.blob;
     var data = new FormData();
     data.append("file", blob, "file");
