@@ -33,6 +33,9 @@ function Demo(props) {
         updateNewBlob(-1);
         props.updateIsActive(false);
         console.log('a');
+        setTimeout(() => {
+          stop();
+        }, 2000);
       })
       .catch((e) => {
         console.error(e);
@@ -53,6 +56,7 @@ function Demo(props) {
         updateNewBlob(blob);
         // props.updateIsActive(true);
         console.log(data);
+        start(); //move under line 66
         fetch("http://127.0.0.1:5000/receive", {
           method: "POST",
           body: data,
@@ -69,17 +73,13 @@ function Demo(props) {
   }
   function handleClick() {
     //console.log(startButton);
-    if (newBlob !== -1) {
-      start();
-    } else {
-      stop();
-    }
+    start();
   }
   return (
     <div className="circle-wrapper">
-      <div className="circle1" onClick={handleClick} style={newBlob!==-1 ? startButton.outer : stopButton.outer}>
-        <div className="circle2" style={newBlob!==-1 ? startButton.inner : stopButton.inner}>
-        <h2>{newBlob!==-1 ? "Start" : "Stop"}</h2>
+      <div className="circle1" onClick={handleClick} style={startButton.outer}>
+        <div className="circle2" style={startButton.inner}>
+        <h2>Start</h2>
         </div>
       </div>
     </div>
