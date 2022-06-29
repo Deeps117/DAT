@@ -46,16 +46,12 @@ function Demo(props) {
       .then(([buffer, blob]) => {
         // toggler();
         console.log("aa");
-        const newBlob = new Blob([blob], { type: "audio/mp3; codecs=0" });
-        const file = new File(buffer, "music.mp3", {
-          type: newBlob.type,
-          lastModified: Date.now(),
-        });
+        const newBlob = blob;
         var data = new FormData();
         data.append("file", newBlob, "file");
         console.log(blob);
         updateNewBlob(blob);
-        props.updateIsActive(true);
+        // props.updateIsActive(true);
         console.log(data);
         fetch("http://127.0.0.1:5000/receive", {
           method: "POST",

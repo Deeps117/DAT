@@ -20,23 +20,23 @@ function Form(props) {
       <div className="form-wrapper-inner">
         <form>
           <h3>Time Stamps</h3>
-          <div class="form-group">
+          <div className="form-group">
             <label for="left">Left</label>
-            <input type="Number" name="left" value={props.left} class="form-control" id="left" onChange={ e => handleChange(e)}/>
+            <input type="Number" name="left" value={props.left} className="form-control" id="left" onChange={ e => handleChange(e)}/>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label for="right">Right</label>
-            <input type="Number" name="right" value={props.right } class="form-control" id="right" onChange={ e => handleChange(e)}/>
+            <input type="Number" name="right" value={props.right } className="form-control" id="right" onChange={ e => handleChange(e)}/>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label for="top">Top</label>
-            <input type="Number" name="top" value={props.top} class="form-control" id="top" onChange={ e => handleChange(e)}/>
+            <input type="Number" name="top" value={props.top} className="form-control" id="top" onChange={ e => handleChange(e)}/>
           </div>
-          <div class="form-group">
+          <div className="form-group">
             <label for="bottom">Bottom</label>
-            <input type="Number" name="bottom" value={props.bottom } class="form-control" id="bottom" onChange={ e => handleChange(e)}/>
+            <input type="Number" name="bottom" value={props.bottom } className="form-control" id="bottom" onChange={ e => handleChange(e)}/>
           </div>
-          <button type="submit" class="btn btn-primary" onClick={ e => handleSubmit(e)}>
+          <button type="submit" className="btn btn-primary" onClick={ e => handleSubmit(e)}>
             Submit
           </button>
         </form>

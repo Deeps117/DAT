@@ -127,3 +127,9 @@ i {
   box-shadow: 0px 0px 10px 5px #32c6d0;
   border: 1px solid;
 }
+.react-recorder .audio-react-recorder__canvas{
+  position: absolute;
+  bottom: 10px;
+  width: 100vw;
+  height: 200px;
+}

@@ -4,7 +4,7 @@ import AudioReactRecorder, { RecordState } from "audio-react-recorder";
 const Recorder = (props) => {
   const [recordState, updateRecordState] = React.useState(null);
   const [toggle, updateToggle] = React.useState(false);
-  const [pressStart, updatePressStart] = React.useState(true);
+  const [pressStart, updatePressStart] = React.useState(false);
   const startButton = {
     inner: {
       boxShadow: "inset 0px 0px 40px 5px rgba(0, 255, 255, 0.7)",
@@ -21,15 +21,6 @@ const Recorder = (props) => {
       boxShadow: "0px 0px 20px 5px #c7ad70",
     },
   };
-  function handleStart() {
-    start();
-    updatePressStart(true);
-    updateToggle(!toggle);
-  }
-  function handleStop() {
-    stop();
-    updatePressStart(false);
-  }
 
   React.useEffect(() => {
     if (pressStart) {
@@ -39,7 +30,7 @@ const Recorder = (props) => {
         updateToggle(!toggle);
       }, 3000);
     }
-  }, [toggle]);
+  }, [toggle, pressStart]);
 
   function start() {
     props.updateIsActive(false);
@@ -50,11 +41,11 @@ const Recorder = (props) => {
     //props.updateIsActive(true);
     updateRecordState(RecordState.STOP);
   }
-
   function onStop(audioData) {
     const link = document.createElement("a");
     link.href = audioData.url;
     link.download = "recorded_auido.wav";
+    link.click();
     const blob = audioData.blob;
     var data = new FormData();
     data.append("file", blob, "file");
@@ -73,6 +64,7 @@ const Recorder = (props) => {
   function handleClick() {
     if (pressStart) {
       start();
+      updateToggle(true);
     } else {
       stop();
     }
@@ -80,23 +72,24 @@ const Recorder = (props) => {
   }
 
   return (
-    <div>
+    <div className="react-recorder">
       <AudioReactRecorder
         state={recordState}
         onStop={onStop}
-        backgroundColor="transparent"
+        backgroundColor="black"
+        foregroundColor="#f763d5"
       />
       <div className="circle-wrapper">
         <div
           className="circle1"
           onClick={handleClick}
-          style={pressStart ? startButton.outer : stopButton.outer}
+          style={!pressStart ? startButton.outer : stopButton.outer}
         >
           <div
             className="circle2"
-            style={pressStart ? startButton.inner : stopButton.inner}
+            style={!pressStart ? startButton.inner : stopButton.inner}
           >
-            <h2>{pressStart ? "Start" : "Stop"}</h2>
+            <h2>{!pressStart ? "Start" : "Stop"}</h2>
           </div>
         </div>
       </div>
