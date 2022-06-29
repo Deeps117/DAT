@@ -2,6 +2,7 @@ import React from "react";
 import Demo from "./Recorder/demo";
 import Display from "./display";
 import Form from "./timestamp";
+import Recorder from "./Recorder";
 
 function App() {
   const [isActive, updateIsActive] = React.useState(false);
@@ -30,7 +31,7 @@ function App() {
         formInput={ formInput }
         isActive = {isActive}
         />
-        <Demo 
+        <Recorder
         updateIsActive = {updateIsActive}
         />
       </div>
