@@ -31,7 +31,7 @@ function App() {
         formInput={ formInput }
         isActive = {isActive}
         />
-        <Recorder
+        <Demo
         updateIsActive = {updateIsActive}
         />
       </div>
