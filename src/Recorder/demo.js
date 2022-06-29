@@ -4,6 +4,7 @@ const MicRecorder = require("mic-recorder-to-mp3");
 
 function Demo(props) {
   const [newBlob, updateNewBlob] = React.useState(null);
+  const [didStart, updateDidStart] = React.useState(false);
   const startButton = {
     inner:{
       "boxShadow": "inset 0px 0px 40px 5px rgba(0, 255, 255, 0.7)",
@@ -14,10 +15,10 @@ function Demo(props) {
   };
   const stopButton = {
     inner:{
-      "boxShadow": "inset 0px 0px 40px 5px #c7ad70",
+      "boxShadow": "inset 0px 0px 60px 20px rgba(0, 255, 255, 0.7)",
     },
     outer:{
-      "boxShadow": "0px 0px 20px 5px #c7ad70",
+      "boxShadow": "0px 0px 40px 30px rgba(0, 255, 255, 0.7)",
     },
   }
 
@@ -73,13 +74,14 @@ function Demo(props) {
   }
   function handleClick() {
     //console.log(startButton);
+    updateDidStart(true);
     start();
   }
   return (
     <div className="circle-wrapper">
-      <div className="circle1" onClick={handleClick} style={startButton.outer}>
-        <div className="circle2" style={startButton.inner}>
-        <h2>Start</h2>
+      <div className="circle1" onClick={handleClick} style={!didStart ? startButton.outer : stopButton.outer}>
+        <div className="circle2" style={!didStart ? startButton.inner : stopButton.inner}>
+        <h2>{ !didStart ? "Start" : "Started" }</h2>
         </div>
       </div>
     </div>
